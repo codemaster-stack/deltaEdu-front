@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About the Delta State Ministry of Education — mission, values, leadership and contact." />
+  <title>About | Delta State Ministry of Education</title>
+
+  <link rel="stylesheet" href="../../shared/shared.css" />
+  <link rel="stylesheet" href="./about.css" />
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main id="page-content">
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <div class="page-hero-grid" aria-hidden="true"></div>
+      <div class="page-hero-content">
+        <span class="t-eyebrow">Who We Are</span>
+        <h1>About the Ministry</h1>
+        <p>The Delta State Ministry of Education oversees all aspects of primary and secondary education across 25 local government areas.</p>
+      </div>
+    </div>
+
+    <!-- MISSION -->
+    <section class="section container" aria-labelledby="mission-title">
+      <div class="about-intro">
+        <div class="about-intro-text">
+          <span class="t-eyebrow">Our Mission</span>
+          <h2 class="t-display-sm" id="mission-title" style="margin-top:var(--s3);margin-bottom:var(--s4)">
+            Building a World-Class Education System for Delta State
+          </h2>
+          <p class="t-body-lg" style="margin-bottom:var(--s4)">
+            The Delta State Ministry of Education manages primary and secondary education across all 25 LGAs. We oversee 1,248 schools, 24,600 teachers and 412,000 students.
+          </p>
+          <p class="t-body" style="margin-bottom:var(--s6)">
+            Our mandate includes teacher recruitment, posting and transfer, school construction and renovation, curriculum implementation, examination management and the digital transformation of education administration through this portal.
+          </p>
+          <div style="display:flex;gap:var(--s3);flex-wrap:wrap">
+            <a href="/pages/schools/schools.html" class="btn btn-gold">Explore Schools</a>
+            <a href="/pages/news/news.html"       class="btn btn-outline">Read Updates</a>
+          </div>
+        </div>
+        <div class="about-visual" aria-hidden="true">
+          <div class="about-visual-inner">
+            <span style="font-size:4.5rem">🏫</span>
+            <div class="about-stats stagger">
+              <div class="about-stat"><span class="about-stat-num">1,248</span><span class="about-stat-label">Schools</span></div>
+              <div class="about-stat"><span class="about-stat-num">24,600</span><span class="about-stat-label">Teachers</span></div>
+              <div class="about-stat"><span class="about-stat-num">412K</span><span class="about-stat-label">Students</span></div>
+              <div class="about-stat"><span class="about-stat-num">25</span><span class="about-stat-label">LGAs</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="section values-section" aria-labelledby="values-title">
+      <div class="container">
+        <div class="section-header centered">
+          <span class="t-eyebrow">What Guides Us</span>
+          <h2 class="t-display-sm" id="values-title">Our Core Values</h2>
+        </div>
+        <div class="values-grid stagger" id="values-grid"><!-- filled by about.js --></div>
+      </div>
+    </section>
+
+    <!-- LEADERSHIP -->
+    <section class="section container" aria-labelledby="leadership-title">
+      <div class="section-header centered">
+        <span class="t-eyebrow">Leadership</span>
+        <h2 class="t-display-sm" id="leadership-title">Ministry Leadership</h2>
+      </div>
+      <div class="leadership-grid stagger" id="leadership-grid"><!-- filled by about.js --></div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="section-header centered">
+          <span class="t-eyebrow">Get in Touch</span>
+          <h2 class="t-display-sm" id="contact-title">Contact Us</h2>
+          <p class="t-body-lg">Reach out for enquiries, complaints or information about education in Delta State.</p>
+        </div>
+        <div class="contact-layout">
+
+          <div class="contact-info" id="contact-info"><!-- filled by about.js --></div>
+
+          <form class="contact-form" id="contact-form" novalidate aria-label="Contact the Ministry">
+            <div class="contact-form-row">
+              <div class="form-group">
+                <label class="form-label" for="cf-name">Full Name *</label>
+                <input type="text"  id="cf-name"    class="form-control" placeholder="Your full name"   required />
+                <span class="field-error" id="cf-name-error"    hidden></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cf-email">Email *</label>
+                <input type="email" id="cf-email"   class="form-control" placeholder="you@example.com" required />
+                <span class="field-error" id="cf-email-error"   hidden></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cf-subject">Subject *</label>
+              <input type="text" id="cf-subject" class="form-control" placeholder="What is this about?" required />
+              <span class="field-error" id="cf-subject-error" hidden></span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cf-message">Message *</label>
+              <textarea id="cf-message" class="form-control" rows="5" placeholder="Your message…" required></textarea>
+              <span class="field-error" id="cf-message-error" hidden></span>
+            </div>
+            <button type="submit" class="btn btn-gold btn-lg" id="cf-submit" style="width:100%">
+              Send Message →
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="../../shared/shared.js"    defer></script>
+  <script src="../../shared/utilities.js" defer></script>
+  <script src="./about.js"               defer></script>
+</body>
+</html>

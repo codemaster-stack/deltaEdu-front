@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="School Admissions — apply for and manage school placements across Delta State." />
+  <title>Admissions | Delta State Ministry of Education</title>
+
+  <link rel="stylesheet" href="../../shared/shared.css" />
+  <link rel="stylesheet" href="./admissions.css" />
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main id="page-content">
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <div class="page-hero-grid" aria-hidden="true"></div>
+      <div class="page-hero-content">
+        <span class="t-eyebrow">School Placements</span>
+        <h1>Admissions Portal</h1>
+        <p>Apply for school placement, track your application status and manage admissions across all Delta State schools.</p>
+      </div>
+    </div>
+
+    <!-- TAB BAR — public applicant view vs admin view -->
+    <div class="adm-tabs-bar">
+      <div class="container">
+        <div class="adm-tabs" role="tablist" aria-label="Admissions views">
+          <button class="adm-tab active" data-tab="apply"  role="tab" aria-selected="true"  aria-controls="tab-apply">Apply for Admission</button>
+          <button class="adm-tab"        data-tab="track"  role="tab" aria-selected="false" aria-controls="tab-track">Track Application</button>
+          <button class="adm-tab"        data-tab="manage" role="tab" aria-selected="false" aria-controls="tab-manage">Manage Applications</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section container">
+
+      <!-- ══════ TAB: APPLY ══════ -->
+      <div class="adm-tab-panel active" id="tab-apply" role="tabpanel" aria-labelledby="tab-btn-apply">
+
+        <div class="apply-layout">
+
+          <!-- Application form -->
+          <div class="apply-form-wrap">
+            <div class="apply-form-header">
+              <h2>New Admission Application</h2>
+              <p>Complete all fields carefully. You will receive an Application Reference Number upon submission.</p>
+            </div>
+
+            <form class="apply-form" id="apply-form" novalidate>
+
+              <!-- SECTION A: Student Info -->
+              <div class="form-section">
+                <div class="form-section-title">A — Student Information</div>
+
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label" for="af-firstname">First Name *</label>
+                    <input type="text" id="af-firstname" class="form-control" placeholder="e.g. Chioma" required />
+                    <span class="field-error" id="af-firstname-error" hidden></span>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="af-lastname">Last Name *</label>
+                    <input type="text" id="af-lastname" class="form-control" placeholder="e.g. Okafor" required />
+                    <span class="field-error" id="af-lastname-error" hidden></span>
+                  </div>
+                </div>
+
+                <div class="form-row-3">
+                  <div class="form-group">
+                    <label class="form-label" for="af-dob">Date of Birth *</label>
+                    <input type="date" id="af-dob" class="form-control" required />
+                    <span class="field-error" id="af-dob-error" hidden></span>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="af-gender">Gender *</label>
+                    <select id="af-gender" class="form-control form-select" required>
+                      <option value="">Select</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                    <span class="field-error" id="af-gender-error" hidden></span>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="af-state">State of Origin *</label>
+                    <input type="text" id="af-state" class="form-control" placeholder="e.g. Delta" required />
+                    <span class="field-error" id="af-state-error" hidden></span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- SECTION B: School Preference -->
+              <div class="form-section">
+                <div class="form-section-title">B — School Preference</div>
+
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label" for="af-class">Class Applying For *</label>
+                    <select id="af-class" class="form-control form-select" required>
+                      <option value="">Select class</option>
+                      <optgroup label="Primary">
+                        <option>Primary 1</option><option>Primary 2</option>
+                        <option>Primary 3</option><option>Primary 4</option>
+                        <option>Primary 5</option><option>Primary 6</option>
+                      </optgroup>
+                      <optgroup label="Junior Secondary">
+                        <option>JSS 1</option><option>JSS 2</option><option>JSS 3</option>
+                      </optgroup>
+                      <optgroup label="Senior Secondary">
+                        <option>SSS 1</option><option>SSS 2</option><option>SSS 3</option>
+                      </optgroup>
+                    </select>
+                    <span class="field-error" id="af-class-error" hidden></span>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="af-type">School Type *</label>
+                    <select id="af-type" class="form-control form-select" required>
+                      <option value="">Select type</option>
+                      <option value="primary">Primary</option>
+                      <option value="secondary">Secondary</option>
+                    </select>
+                    <span class="field-error" id="af-type-error" hidden></span>
+                  </div>
+                </div>
+
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label" for="af-lga">Preferred LGA *</label>
+                    <select id="af-lga" class="form-control form-select" required>
+                      <option value="">Select LGA</option>
+                    </select>
+                    <span class="field-error" id="af-lga-error" hidden></span>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="af-school1">First Choice School *</label>
+                    <input type="text" id="af-school1" class="form-control" placeholder="Preferred school name" required />
+                    <span class="field-error" id="af-school1-error" hidden></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="af-school2">Second Choice School (optional)</label>
+                  <input type="text" id="af-school2" class="form-control" placeholder="Alternative school name" />
+                </div>
+
+              </div>
+
+              <!-- SECTION C: Guardian -->
+              <div class="form-section">
+                <div class="form-section-title">C — Parent / Guardian</div>
+
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label" for="af-guardian">Guardian Full Name *</label>
+                    <input type="text" id="af-guardian" class="form-control" placeholder="e.g. Mrs. Rose Okafor" required />
+                    <span class="field-error" id="af-guardian-error" hidden></span>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="af-relation">Relationship *</label>
+                    <select id="af-relation" class="form-control form-select" required>
+                      <option value="">Select</option>
+                      <option>Father</option><option>Mother</option>
+                      <option>Guardian</option><option>Sibling</option><option>Other</option>
+                    </select>
+                    <span class="field-error" id="af-relation-error" hidden></span>
+                  </div>
+                </div>
+
+                <div class="form-row-2">
+                  <div class="form-group">
+                    <label class="form-label" for="af-phone">Phone *</label>
+                    <input type="tel" id="af-phone" class="form-control" placeholder="08012345678" required />
+                    <span class="field-error" id="af-phone-error" hidden></span>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="af-email">Email (optional)</label>
+                    <input type="email" id="af-email" class="form-control" placeholder="guardian@email.com" />
+                    <span class="field-error" id="af-email-error" hidden></span>
+                  </div>
+                </div>
+
+              </div>
+
+              <button type="submit" class="btn btn-gold btn-lg apply-submit" id="af-submit">
+                Submit Application →
+              </button>
+
+            </form>
+          </div>
+
+          <!-- Info sidebar -->
+          <aside class="apply-sidebar">
+
+            <div class="info-box">
+              <div class="info-box-icon">📋</div>
+              <h3>How It Works</h3>
+              <ol class="info-steps">
+                <li>Fill in the application form with accurate details.</li>
+                <li>Submit — you will receive a Reference Number.</li>
+                <li>The school reviews and approves or waitlists.</li>
+                <li>You are notified by SMS or through the portal.</li>
+                <li>Accepted students complete enrolment at the school.</li>
+              </ol>
+            </div>
+
+            <div class="info-box info-box-alert">
+              <div class="info-box-icon">⏰</div>
+              <h3>Current Intake</h3>
+              <p>Applications for the <strong>2025/2026 academic year</strong> are now open. Deadline: <strong>30 April 2025</strong>.</p>
+            </div>
+
+            <div class="info-box">
+              <div class="info-box-icon">📞</div>
+              <h3>Need Help?</h3>
+              <p>Contact the Admissions Office:</p>
+              <p style="margin-top:var(--s2);font-weight:600">+234 (0) 803 000 0001</p>
+              <p style="color:var(--gold)">admissions@deltaedu.gov.ng</p>
+            </div>
+
+          </aside>
+
+        </div>
+
+        <!-- SUCCESS STATE (hidden until form is submitted) -->
+        <div class="apply-success" id="apply-success" hidden>
+          <div class="success-icon">✅</div>
+          <h2>Application Submitted!</h2>
+          <p>Your application has been received. Your reference number is:</p>
+          <div class="ref-number" id="ref-number"></div>
+          <p class="success-note">Keep this number safe — you will need it to track your application status.</p>
+          <div style="display:flex;gap:var(--s3);justify-content:center;flex-wrap:wrap">
+            <button class="btn btn-outline" onclick="switchTab('track')">Track This Application</button>
+            <button class="btn btn-gold"    onclick="resetApplicationForm()">New Application</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ══════ TAB: TRACK ══════ -->
+      <div class="adm-tab-panel" id="tab-track" role="tabpanel" aria-labelledby="tab-btn-track">
+
+        <div class="track-layout">
+          <div class="track-form-wrap">
+            <h2>Track Your Application</h2>
+            <p>Enter your Application Reference Number to check the current status of your admission application.</p>
+
+            <div class="track-input-row">
+              <input
+                type="text"
+                id="track-ref-input"
+                class="form-control"
+                placeholder="e.g. ADM-2025-004821"
+                aria-label="Application reference number"
+                style="text-transform:uppercase"
+              />
+              <button class="btn btn-gold" id="track-btn">Check Status</button>
+            </div>
+            <span class="field-error" id="track-ref-error" hidden></span>
+
+            <!-- Result shown here -->
+            <div class="track-result" id="track-result" hidden></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ══════ TAB: MANAGE (admin) ══════ -->
+      <div class="adm-tab-panel" id="tab-manage" role="tabpanel" aria-labelledby="tab-btn-manage">
+
+        <!-- Toolbar -->
+        <div class="manage-toolbar">
+          <div class="search-wrap manage-search">
+            <span class="search-icon-el" id="manage-search-icon" aria-hidden="true"></span>
+            <input
+              type="search"
+              id="manage-search"
+              class="form-control"
+              placeholder="Search by name or reference…"
+              aria-label="Search applications"
+            />
+          </div>
+          <div class="manage-toolbar-right">
+            <select id="manage-status-filter" class="form-control form-select manage-filter-sel" aria-label="Filter by status">
+              <option value="all">All Statuses</option>
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+              <option value="waitlisted">Waitlisted</option>
+              <option value="rejected">Rejected</option>
+            </select>
+            <span class="results-count" id="manage-count" aria-live="polite"></span>
+          </div>
+        </div>
+
+        <!-- Applications table -->
+        <div class="applications-table-wrap">
+          <table class="applications-table" aria-label="Applications list">
+            <thead>
+              <tr>
+                <th>Ref. No.</th>
+                <th>Student Name</th>
+                <th>Class</th>
+                <th>School Choice</th>
+                <th>LGA</th>
+                <th>Applied</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="applications-tbody">
+              <!-- filled by admissions.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="empty-state" id="manage-empty" hidden>
+          <div style="font-size:2.5rem">📭</div>
+          <h3>No applications found</h3>
+          <p>Try adjusting your search or filter.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="../../shared/shared.js"    defer></script>
+  <script src="../../shared/utilities.js" defer></script>
+  <script src="./admissions.js"           defer></script>
+</body>
+</html>

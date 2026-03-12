@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Browse all registered primary and secondary schools across Delta State — filter by LGA and school type." />
+  <title>School Directory | Delta State Ministry of Education</title>
+
+  <link rel="stylesheet" href="../../shared/shared.css" />
+  <link rel="stylesheet" href="./schools.css" />
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main id="page-content">
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <div class="page-hero-grid" aria-hidden="true"></div>
+      <div class="page-hero-content">
+        <span class="t-eyebrow">Delta State</span>
+        <h1>School Directory</h1>
+        <p>Browse all registered primary and secondary schools across every local government area in Delta State.</p>
+      </div>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar" role="search" aria-label="Search and filter schools">
+      <div class="filter-bar-inner container">
+
+        <div class="search-wrap filter-search">
+          <span class="search-icon-el" aria-hidden="true" id="search-icon-slot"></span>
+          <input
+            type="search"
+            id="school-search"
+            class="form-control"
+            placeholder="Search by school name…"
+            aria-label="Search schools"
+            autocomplete="off"
+          />
+        </div>
+
+        <select id="type-filter" class="form-control form-select" aria-label="Filter by school type">
+          <option value="all">All Types</option>
+          <option value="primary">Primary School</option>
+          <option value="secondary">Secondary School</option>
+        </select>
+
+        <select id="lga-filter" class="form-control form-select" aria-label="Filter by LGA">
+          <option value="all">All LGAs</option>
+        </select>
+
+        <div class="filter-right">
+          <span class="results-label" id="results-label" aria-live="polite"></span>
+          <button class="btn btn-ghost btn-sm" id="clear-filters">Clear</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SCHOOLS GRID -->
+    <section class="section container" aria-label="School listings">
+
+      <!-- Skeleton shown while loading -->
+      <div class="schools-grid" id="skeleton-grid" aria-hidden="true">
+        <div class="school-skeleton skeleton"></div>
+        <div class="school-skeleton skeleton"></div>
+        <div class="school-skeleton skeleton"></div>
+        <div class="school-skeleton skeleton"></div>
+        <div class="school-skeleton skeleton"></div>
+        <div class="school-skeleton skeleton"></div>
+      </div>
+
+      <!-- Real cards injected by schools.js -->
+      <div class="schools-grid" id="schools-grid" hidden></div>
+
+      <!-- Empty state -->
+      <div class="empty-state" id="empty-state" hidden aria-live="polite">
+        <div class="empty-icon">🔍</div>
+        <h3>No schools found</h3>
+        <p>Try adjusting your search or clearing the filters.</p>
+        <button class="btn btn-outline" id="empty-clear">Clear Filters</button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="../../shared/shared.js"    defer></script>
+  <script src="../../shared/utilities.js" defer></script>
+  <script src="./schools.js"              defer></script>
+</body>
+</html>

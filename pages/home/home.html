@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Delta State Ministry of Education — Official Digital Education Portal for schools, teachers, students and parents." />
+  <title>Home | Delta State Ministry of Education</title>
+
+  <!-- shared styles (design system, navbar, footer) -->
+  <link rel="stylesheet" href="../../shared/shared.css" />
+  <!-- this page's own styles -->
+  <link rel="stylesheet" href="./home.css" />
+</head>
+<body>
+
+  <!-- Navbar injected here by shared.js -->
+  <div id="navbar-mount"></div>
+
+  <!-- ═══════════════ PAGE CONTENT ═══════════════ -->
+  <main id="page-content">
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Welcome banner">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-inner container">
+
+        <div class="hero-text">
+          <span class="hero-eyebrow">Delta State, Nigeria</span>
+          <h1 class="hero-title">
+            Shaping the<br>
+            <em>Future</em> of<br>
+            Education
+          </h1>
+          <p class="hero-desc">
+            The official digital portal of the Delta State Ministry of Education — connecting schools, teachers, students and parents across all 25 local government areas.
+          </p>
+          <div class="hero-btns">
+            <a href="/pages/schools/schools.html" class="btn btn-gold btn-lg">
+              Explore Schools →
+            </a>
+            <a href="/pages/login/login.html" class="btn btn-outline-white btn-lg">
+              Staff Portal
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-stats stagger" aria-label="Portal statistics">
+          <div class="hero-stat">
+            <span class="hero-stat-num">1,248</span>
+            <span class="hero-stat-label">Registered Schools</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">24,600</span>
+            <span class="hero-stat-label">Government Teachers</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">412K</span>
+            <span class="hero-stat-label">Enrolled Students</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">25</span>
+            <span class="hero-stat-label">Local Govt. Areas</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar" role="complementary">
+      <div class="stats-bar-inner container">
+        <div class="sbar-item">
+          <span class="sbar-num">1,248</span>
+          <span class="sbar-label">Schools</span>
+        </div>
+        <div class="sbar-divider" aria-hidden="true"></div>
+        <div class="sbar-item">
+          <span class="sbar-num">24,600</span>
+          <span class="sbar-label">Teachers</span>
+        </div>
+        <div class="sbar-divider" aria-hidden="true"></div>
+        <div class="sbar-item">
+          <span class="sbar-num">412,000</span>
+          <span class="sbar-label">Students</span>
+        </div>
+        <div class="sbar-divider" aria-hidden="true"></div>
+        <div class="sbar-item">
+          <span class="sbar-num">96%</span>
+          <span class="sbar-label">Coverage Rate</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section class="section container" aria-labelledby="services-title">
+      <div class="section-header centered">
+        <span class="t-eyebrow">What We Offer</span>
+        <h2 class="t-display-sm" id="services-title">Everything Education in One Portal</h2>
+        <p class="t-body-lg">Manage schools, teachers, students and examinations — through a unified platform built for Delta State.</p>
+      </div>
+      <div class="services-grid stagger" id="services-grid">
+        <!-- filled by home.js -->
+      </div>
+    </section>
+
+    <!-- NEWS PREVIEW -->
+    <section class="section news-bg" aria-labelledby="news-title">
+      <div class="container">
+        <div class="section-header flex-between">
+          <div>
+            <span class="t-eyebrow">Latest Updates</span>
+            <h2 class="t-display-sm" id="news-title">News &amp; Announcements</h2>
+          </div>
+          <a href="/pages/news/news.html" class="btn btn-outline">View All →</a>
+        </div>
+        <div class="news-grid stagger" id="news-grid">
+          <!-- filled by home.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="section container" aria-label="Call to action">
+      <div class="cta-band">
+        <div class="cta-band-bg" aria-hidden="true"></div>
+        <div class="cta-text">
+          <h2>Ready to access the portal?</h2>
+          <p>Teachers, principals, students and parents can sign in to their personalised dashboards.</p>
+        </div>
+        <div class="cta-btns">
+          <a href="/pages/login/login.html" class="btn btn-gold btn-lg">Login to Portal</a>
+          <a href="/pages/about/about.html" class="btn btn-outline-white btn-lg">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <!-- ═══════════════ END PAGE CONTENT ═══════════════ -->
+
+  <!-- Footer injected here by shared.js -->
+  <div id="footer-mount"></div>
+
+  <!-- shared.js MUST come before page JS -->
+  <script src="../../shared/shared.js"     defer></script>
+  <script src="../../shared/utilities.js"  defer></script>
+  <script src="./home.js"                  defer></script>
+</body>
+</html>

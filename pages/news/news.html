@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Official news, announcements and circulars from the Delta State Ministry of Education." />
+  <title>News & Announcements | Delta State Ministry of Education</title>
+
+  <link rel="stylesheet" href="../../shared/shared.css" />
+  <link rel="stylesheet" href="./news.css" />
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main id="page-content">
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <div class="page-hero-grid" aria-hidden="true"></div>
+      <div class="page-hero-content">
+        <span class="t-eyebrow">Stay Informed</span>
+        <h1>News &amp; Announcements</h1>
+        <p>Official updates, circulars and announcements from the Delta State Ministry of Education.</p>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <section class="section container">
+      <div class="news-layout">
+
+        <!-- Articles column -->
+        <div class="news-main">
+
+          <!-- Category tabs -->
+          <div class="cat-bar" role="group" aria-label="Filter by category">
+            <div class="cat-tabs" id="cat-tabs"><!-- filled by news.js --></div>
+          </div>
+
+          <!-- Skeleton -->
+          <div class="articles-list" id="articles-skeleton" aria-hidden="true">
+            <div class="article-skeleton skeleton"></div>
+            <div class="article-skeleton skeleton"></div>
+            <div class="article-skeleton skeleton"></div>
+          </div>
+
+          <!-- Real articles -->
+          <div class="articles-list" id="articles-list" hidden role="list"></div>
+
+          <!-- No results -->
+          <div class="no-articles" id="no-articles" hidden aria-live="polite">
+            <span>📭</span>
+            <p>No articles in this category yet.</p>
+          </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="news-sidebar" aria-label="Sidebar">
+
+          <div class="sidebar-box">
+            <h3 class="sidebar-box-title">Quick Links</h3>
+            <div class="sidebar-links">
+              <a href="/pages/login/login.html"   class="sidebar-link">🎓 Student Login</a>
+              <a href="/pages/login/login.html"   class="sidebar-link">👩‍🏫 Teacher Login</a>
+              <a href="/pages/login/login.html"   class="sidebar-link">🏛️ Admin Login</a>
+              <a href="/pages/schools/schools.html" class="sidebar-link">🏫 School Directory</a>
+            </div>
+          </div>
+
+          <div class="sidebar-box sidebar-alert-box">
+            <div style="font-size:1.8rem;margin-bottom:var(--s2)">📋</div>
+            <h4>WAEC Registration</h4>
+            <p>Registration for the 2024/2025 WAEC examination is open. Contact your school exam officer.</p>
+            <a href="/pages/news/news.html" class="btn btn-gold btn-sm" style="margin-top:var(--s3);width:100%;justify-content:center">View Details</a>
+          </div>
+
+          <div class="sidebar-box">
+            <h3 class="sidebar-box-title">Categories</h3>
+            <div class="sidebar-cats" id="sidebar-cats"><!-- filled by news.js --></div>
+          </div>
+
+        </aside>
+
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="../../shared/shared.js"    defer></script>
+  <script src="../../shared/utilities.js" defer></script>
+  <script src="./news.js"                 defer></script>
+</body>
+</html>

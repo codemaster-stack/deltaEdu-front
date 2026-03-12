@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Results Portal — check, upload and manage examination results across Delta State schools." />
+  <title>Results | Delta State Ministry of Education</title>
+
+  <link rel="stylesheet" href="../../shared/shared.css" />
+  <link rel="stylesheet" href="./results.css" />
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main id="page-content">
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <div class="page-hero-grid" aria-hidden="true"></div>
+      <div class="page-hero-content">
+        <span class="t-eyebrow">Academic Performance</span>
+        <h1>Results Portal</h1>
+        <p>Check student examination results, upload school results and manage result records across Delta State.</p>
+      </div>
+    </div>
+
+    <!-- TAB BAR -->
+    <div class="results-tabs-bar">
+      <div class="container">
+        <div class="results-tabs" role="tablist" aria-label="Results views">
+          <button class="results-tab active" data-tab="check"   role="tab" aria-selected="true">Check Results</button>
+          <button class="results-tab"        data-tab="upload"  role="tab" aria-selected="false">Upload Results</button>
+          <button class="results-tab"        data-tab="manage"  role="tab" aria-selected="false">Manage Records</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section container">
+
+      <!-- ══════ TAB: CHECK RESULTS ══════ -->
+      <div class="results-tab-panel active" id="tab-check" role="tabpanel">
+
+        <div class="check-layout">
+
+          <!-- Check form -->
+          <div class="check-form-wrap">
+            <div class="check-form-header">
+              <h2>Check Your Results</h2>
+              <p>Enter your Student ID and Exam PIN to view your results.</p>
+            </div>
+
+            <form class="check-form" id="check-form" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="cf-student-id">Student ID *</label>
+                <input
+                  type="text"
+                  id="cf-student-id"
+                  class="form-control"
+                  placeholder="e.g. DSS/2024/001001"
+                  style="text-transform:uppercase; font-family:monospace"
+                  required
+                />
+                <span class="field-error" id="cf-student-id-error" hidden></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="cf-exam">Examination *</label>
+                <select id="cf-exam" class="form-control form-select" required>
+                  <option value="">Select examination</option>
+                  <optgroup label="2024/2025 Session">
+                    <option value="terminal-3">Third Term Examination 2024/2025</option>
+                    <option value="terminal-2">Second Term Examination 2024/2025</option>
+                    <option value="terminal-1">First Term Examination 2024/2025</option>
+                  </optgroup>
+                  <optgroup label="2023/2024 Session">
+                    <option value="terminal-3-prev">Third Term Examination 2023/2024</option>
+                    <option value="terminal-2-prev">Second Term Examination 2023/2024</option>
+                    <option value="terminal-1-prev">First Term Examination 2023/2024</option>
+                  </optgroup>
+                </select>
+                <span class="field-error" id="cf-exam-error" hidden></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="cf-pin">Exam PIN *</label>
+                <div class="password-wrap">
+                  <input
+                    type="password"
+                    id="cf-pin"
+                    class="form-control"
+                    placeholder="Enter your scratch card PIN"
+                    maxlength="12"
+                    required
+                  />
+                  <button type="button" class="pw-toggle" id="pin-toggle" aria-label="Show PIN">
+                    <span id="pin-toggle-icon"></span>
+                  </button>
+                </div>
+                <span class="field-error" id="cf-pin-error" hidden></span>
+              </div>
+
+              <button type="submit" class="btn btn-gold btn-lg check-submit" id="cf-submit">
+                View Results →
+              </button>
+            </form>
+
+            <p class="check-note">
+              Your Exam PIN is printed on the scratch card purchased from your school.
+              Contact your school office if you have lost your PIN.
+            </p>
+          </div>
+
+          <!-- Result card (hidden until form is submitted) -->
+          <div class="result-card-wrap" id="result-card-wrap" hidden>
+            <div class="result-card" id="result-card">
+              <!-- filled by results.js -->
+            </div>
+            <div class="result-card-actions">
+              <button class="btn btn-outline" onclick="printResult()">🖨 Print Result</button>
+              <button class="btn btn-ghost"   onclick="resetCheckForm()">← Check Another</button>
+            </div>
+          </div>
+
+          <!-- Info sidebar -->
+          <aside class="check-sidebar">
+            <div class="info-box">
+              <div class="info-box-icon">📋</div>
+              <h3>Grading Scale</h3>
+              <div class="grade-scale" id="grade-scale">
+                <!-- filled by results.js -->
+              </div>
+            </div>
+            <div class="info-box info-box-alert">
+              <div class="info-box-icon">📢</div>
+              <h3>Latest Release</h3>
+              <p>Third Term 2024/2025 results are now available for all SS1–SS3 classes.</p>
+            </div>
+          </aside>
+
+        </div>
+
+      </div>
+
+      <!-- ══════ TAB: UPLOAD RESULTS ══════ -->
+      <div class="results-tab-panel" id="tab-upload" role="tabpanel">
+
+        <div class="upload-layout">
+
+          <div class="upload-form-wrap">
+            <div class="upload-header">
+              <h2>Upload School Results</h2>
+              <p>Upload results for your school. All fields are required. Accepted format: CSV or Excel (.xlsx).</p>
+            </div>
+
+            <form class="upload-form" id="upload-form" novalidate>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label class="form-label" for="uf-school">School *</label>
+                  <input type="text" id="uf-school" class="form-control" placeholder="Your school name" required />
+                  <span class="field-error" id="uf-school-error" hidden></span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="uf-lga">LGA *</label>
+                  <select id="uf-lga" class="form-control form-select" required>
+                    <option value="">Select LGA</option>
+                  </select>
+                  <span class="field-error" id="uf-lga-error" hidden></span>
+                </div>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label class="form-label" for="uf-class">Class *</label>
+                  <select id="uf-class" class="form-control form-select" required>
+                    <option value="">Select class</option>
+                    <optgroup label="Junior Secondary">
+                      <option>JSS 1</option><option>JSS 2</option><option>JSS 3</option>
+                    </optgroup>
+                    <optgroup label="Senior Secondary">
+                      <option>SSS 1</option><option>SSS 2</option><option>SSS 3</option>
+                    </optgroup>
+                  </select>
+                  <span class="field-error" id="uf-class-error" hidden></span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="uf-exam">Examination *</label>
+                  <select id="uf-exam" class="form-control form-select" required>
+                    <option value="">Select exam</option>
+                    <option>First Term Examination 2024/2025</option>
+                    <option>Second Term Examination 2024/2025</option>
+                    <option>Third Term Examination 2024/2025</option>
+                  </select>
+                  <span class="field-error" id="uf-exam-error" hidden></span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="uf-subject">Subject *</label>
+                <select id="uf-subject" class="form-control form-select" required>
+                  <option value="">Select subject</option>
+                  <option>Mathematics</option><option>English Language</option>
+                  <option>Physics</option><option>Chemistry</option><option>Biology</option>
+                  <option>Economics</option><option>Government</option><option>Literature</option>
+                  <option>History</option><option>ICT</option><option>Social Studies</option>
+                  <option>Basic Science</option><option>Agricultural Science</option>
+                  <option>Physical Education</option>
+                </select>
+                <span class="field-error" id="uf-subject-error" hidden></span>
+              </div>
+
+              <!-- File drop zone -->
+              <div class="form-group">
+                <label class="form-label">Results File * (.csv or .xlsx)</label>
+                <div class="drop-zone" id="drop-zone" tabindex="0" role="button" aria-label="Upload results file">
+                  <div class="drop-zone-inner" id="drop-zone-inner">
+                    <span class="drop-icon">📂</span>
+                    <span class="drop-text">Drag &amp; drop your file here, or <span class="drop-browse">browse</span></span>
+                    <span class="drop-hint">Accepted: .csv, .xlsx — Max 5MB</span>
+                  </div>
+                  <input type="file" id="uf-file" accept=".csv,.xlsx" hidden />
+                </div>
+                <span class="field-error" id="uf-file-error" hidden></span>
+              </div>
+
+              <!-- Template download -->
+              <div class="template-box">
+                <span>📄</span>
+                <div>
+                  <div style="font-weight:600;font-size:.9rem;color:var(--navy)">Download Template</div>
+                  <div style="font-size:.82rem;color:var(--navy-300)">Use our CSV template to format your results correctly before uploading.</div>
+                </div>
+                <button type="button" class="btn btn-outline btn-sm" onclick="downloadTemplate()">Download</button>
+              </div>
+
+              <button type="submit" class="btn btn-gold btn-lg" id="uf-submit" style="width:100%;justify-content:center">
+                Upload Results →
+              </button>
+
+            </form>
+          </div>
+
+          <!-- Upload history -->
+          <aside class="upload-history">
+            <h3 class="upload-history-title">Recent Uploads</h3>
+            <div class="upload-history-list" id="upload-history-list">
+              <!-- filled by results.js -->
+            </div>
+          </aside>
+
+        </div>
+
+      </div>
+
+      <!-- ══════ TAB: MANAGE RECORDS ══════ -->
+      <div class="results-tab-panel" id="tab-manage" role="tabpanel">
+
+        <!-- Toolbar -->
+        <div class="manage-toolbar">
+          <div class="search-wrap manage-search">
+            <span class="search-icon-el" id="manage-search-icon" aria-hidden="true"></span>
+            <input
+              type="search"
+              id="manage-search"
+              class="form-control"
+              placeholder="Search by student name or ID…"
+              aria-label="Search results"
+            />
+          </div>
+          <div class="manage-toolbar-right">
+            <select id="manage-exam-filter"  class="form-control form-select manage-filter-sel" aria-label="Filter by exam">
+              <option value="all">All Exams</option>
+              <option value="terminal-3">Third Term 2024/2025</option>
+              <option value="terminal-2">Second Term 2024/2025</option>
+              <option value="terminal-1">First Term 2024/2025</option>
+            </select>
+            <select id="manage-class-filter" class="form-control form-select manage-filter-sel" aria-label="Filter by class">
+              <option value="all">All Classes</option>
+              <option>JSS 1</option><option>JSS 2</option><option>JSS 3</option>
+              <option>SSS 1</option><option>SSS 2</option><option>SSS 3</option>
+            </select>
+            <span class="results-count" id="manage-count" aria-live="polite"></span>
+          </div>
+        </div>
+
+        <!-- Records table -->
+        <div class="records-table-wrap">
+          <table class="records-table" aria-label="Result records">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>ID</th>
+                <th>Class</th>
+                <th>Subject</th>
+                <th>Score</th>
+                <th>Grade</th>
+                <th>Exam</th>
+                <th>School</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="records-tbody"></tbody>
+          </table>
+        </div>
+
+        <div class="empty-state" id="manage-empty" hidden>
+          <div style="font-size:2.5rem">📊</div>
+          <h3>No records found</h3>
+          <p>Try adjusting your search or filters.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="../../shared/shared.js"    defer></script>
+  <script src="../../shared/utilities.js" defer></script>
+  <script src="./results.js"             defer></script>
+</body>
+</html>

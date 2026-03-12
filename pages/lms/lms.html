@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="requires-auth" content="true" />
+  <meta name="description" content="Learning Management System — access courses, lessons, assignments and track your progress." />
+  <title>LMS | Delta State Ministry of Education</title>
+
+  <link rel="stylesheet" href="../../shared/shared.css" />
+  <link rel="stylesheet" href="./lms.css" />
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main id="page-content">
+
+    <!-- ══════ SCREEN: CATALOGUE (default) ══════ -->
+    <div class="lms-screen" id="screen-catalogue">
+
+      <div class="page-hero">
+        <div class="page-hero-grid" aria-hidden="true"></div>
+        <div class="page-hero-content">
+          <span class="t-eyebrow">Digital Classroom</span>
+          <h1>Learning Portal</h1>
+          <p>Access your courses, study materials and assignments from anywhere, at any time.</p>
+        </div>
+      </div>
+
+      <!-- STATS STRIP -->
+      <div class="lms-stats-strip">
+        <div class="container">
+          <div class="lms-stats-inner" id="lms-stats-inner">
+            <!-- filled by lms.js -->
+          </div>
+        </div>
+      </div>
+
+      <div class="section container">
+
+        <!-- Filter + search bar -->
+        <div class="lms-toolbar">
+          <div class="lms-tabs" role="tablist" aria-label="Course filter">
+            <button class="lms-filter-tab active" data-filter="all"        role="tab">All Courses</button>
+            <button class="lms-filter-tab"        data-filter="enrolled"   role="tab">My Courses</button>
+            <button class="lms-filter-tab"        data-filter="primary"    role="tab">Primary</button>
+            <button class="lms-filter-tab"        data-filter="junior"     role="tab">Junior Secondary</button>
+            <button class="lms-filter-tab"        data-filter="senior"     role="tab">Senior Secondary</button>
+          </div>
+          <div class="lms-toolbar-right">
+            <div class="search-wrap lms-search">
+              <span class="search-icon-el" id="lms-search-icon" aria-hidden="true"></span>
+              <input
+                type="search"
+                id="lms-search"
+                class="form-control"
+                placeholder="Search courses…"
+                aria-label="Search courses"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Course grid -->
+        <div class="courses-grid" id="skeleton-grid" aria-hidden="true">
+          <div class="course-skeleton skeleton"></div>
+          <div class="course-skeleton skeleton"></div>
+          <div class="course-skeleton skeleton"></div>
+          <div class="course-skeleton skeleton"></div>
+        </div>
+
+        <div class="courses-grid" id="courses-grid" hidden></div>
+
+        <div class="empty-state" id="courses-empty" hidden>
+          <div style="font-size:3rem">📚</div>
+          <h3>No courses found</h3>
+          <p>Try a different search or filter.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ══════ SCREEN: COURSE VIEW ══════ -->
+    <div class="lms-screen" id="screen-course" hidden>
+
+      <!-- Course header -->
+      <div class="course-hero" id="course-hero">
+        <div class="container">
+          <button class="btn btn-ghost back-btn" id="back-btn" onclick="showCatalogue()">
+            ← Back to Courses
+          </button>
+          <div class="course-hero-inner" id="course-hero-inner">
+            <!-- filled by lms.js -->
+          </div>
+        </div>
+      </div>
+
+      <div class="section container">
+        <div class="course-layout">
+
+          <!-- LEFT: Lessons list -->
+          <div class="lessons-panel">
+            <div class="lessons-panel-header">
+              <h3>Course Content</h3>
+              <span class="lessons-meta" id="lessons-meta"></span>
+            </div>
+
+            <div class="lessons-list" id="lessons-list">
+              <!-- filled by lms.js -->
+            </div>
+          </div>
+
+          <!-- RIGHT: Lesson viewer -->
+          <div class="lesson-viewer" id="lesson-viewer">
+            <div class="lesson-placeholder" id="lesson-placeholder">
+              <div style="font-size:3.5rem">👆</div>
+              <h3>Select a lesson to begin</h3>
+              <p>Choose any lesson from the list on the left.</p>
+            </div>
+            <div class="lesson-content" id="lesson-content" hidden>
+              <!-- filled by lms.js -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="../../shared/shared.js"    defer></script>
+  <script src="../../shared/utilities.js" defer></script>
+  <script src="./lms.js"                 defer></script>
+</body>
+</html>

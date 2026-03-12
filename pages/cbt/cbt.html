@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Computer Based Testing — take and manage examinations online across Delta State schools." />
+  <title>CBT | Delta State Ministry of Education</title>
+
+  <link rel="stylesheet" href="../../shared/shared.css" />
+  <link rel="stylesheet" href="./cbt.css" />
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main id="page-content">
+
+    <!-- ══════ SCREEN 1: LANDING / LOGIN ══════ -->
+    <div class="cbt-screen" id="screen-landing">
+
+      <div class="page-hero">
+        <div class="page-hero-grid" aria-hidden="true"></div>
+        <div class="page-hero-content">
+          <span class="t-eyebrow">Online Examination</span>
+          <h1>CBT Examination Centre</h1>
+          <p>Sit computer-based tests securely and instantly. Your results are generated the moment you submit.</p>
+        </div>
+      </div>
+
+      <div class="section container">
+        <div class="cbt-landing-grid">
+
+          <!-- Login panel -->
+          <div class="cbt-login-panel">
+            <div class="cbt-login-header">
+              <h2>Candidate Login</h2>
+              <p>Enter your exam credentials to begin. Ensure you have a stable internet connection before starting.</p>
+            </div>
+            <form class="cbt-login-form" id="cbt-login-form" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="cbt-student-id">Student ID *</label>
+                <input type="text" id="cbt-student-id" class="form-control" placeholder="DSS/2024/001001" style="font-family:monospace;text-transform:uppercase" required />
+                <span class="field-error" id="cbt-student-id-error" hidden></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cbt-exam-code">Exam Code *</label>
+                <input type="text" id="cbt-exam-code" class="form-control" placeholder="e.g. MATH-SS2-T3" style="font-family:monospace;text-transform:uppercase" required />
+                <span class="field-error" id="cbt-exam-code-error" hidden></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cbt-token">Access Token *</label>
+                <div class="password-wrap">
+                  <input type="password" id="cbt-token" class="form-control" placeholder="Provided by your teacher" required />
+                  <button type="button" class="pw-toggle" id="token-toggle" aria-label="Show token">
+                    <span id="token-toggle-icon"></span>
+                  </button>
+                </div>
+                <span class="field-error" id="cbt-token-error" hidden></span>
+              </div>
+              <button type="submit" class="btn btn-gold btn-lg cbt-login-submit" id="cbt-login-btn">
+                Start Examination →
+              </button>
+            </form>
+          </div>
+
+          <!-- Info cards -->
+          <div class="cbt-info-stack">
+
+            <div class="cbt-info-card">
+              <div class="cbt-info-icon">⏱</div>
+              <div>
+                <div class="cbt-info-title">Timed Session</div>
+                <div class="cbt-info-desc">The timer starts the moment you click Start. It cannot be paused.</div>
+              </div>
+            </div>
+
+            <div class="cbt-info-card">
+              <div class="cbt-info-icon">🔒</div>
+              <div>
+                <div class="cbt-info-title">Secure Environment</div>
+                <div class="cbt-info-desc">Navigation away from this page is monitored. Stay focused.</div>
+              </div>
+            </div>
+
+            <div class="cbt-info-card">
+              <div class="cbt-info-icon">✅</div>
+              <div>
+                <div class="cbt-info-title">Instant Results</div>
+                <div class="cbt-info-desc">Objective questions are marked automatically on submission.</div>
+              </div>
+            </div>
+
+            <div class="cbt-info-card">
+              <div class="cbt-info-icon">🔁</div>
+              <div>
+                <div class="cbt-info-title">Review &amp; Flag</div>
+                <div class="cbt-info-desc">Flag questions to revisit before final submission.</div>
+              </div>
+            </div>
+
+            <div class="cbt-available" id="cbt-available">
+              <div class="cbt-available-title">Available Now</div>
+              <div class="cbt-available-list" id="cbt-available-list">
+                <!-- filled by cbt.js -->
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══════ SCREEN 2: EXAM IN PROGRESS ══════ -->
+    <div class="cbt-screen" id="screen-exam" hidden>
+
+      <!-- Exam top bar -->
+      <div class="exam-topbar">
+        <div class="exam-topbar-left">
+          <div class="exam-title" id="exam-title"></div>
+          <div class="exam-candidate" id="exam-candidate"></div>
+        </div>
+        <div class="exam-topbar-center">
+          <div class="exam-timer" id="exam-timer" aria-live="polite" aria-label="Time remaining">
+            <span class="timer-icon">⏱</span>
+            <span id="timer-display">00:00</span>
+          </div>
+        </div>
+        <div class="exam-topbar-right">
+          <div class="exam-progress-wrap">
+            <div class="exam-progress-label">
+              <span id="answered-count">0</span> / <span id="total-count">0</span> answered
+            </div>
+            <div class="exam-progress-bar">
+              <div class="exam-progress-fill" id="progress-fill"></div>
+            </div>
+          </div>
+          <button class="btn btn-gold btn-sm" id="submit-exam-btn">Submit Exam</button>
+        </div>
+      </div>
+
+      <!-- Exam body -->
+      <div class="exam-body">
+
+        <!-- Question navigator (sidebar) -->
+        <div class="exam-nav" id="exam-nav" aria-label="Question navigator">
+          <div class="exam-nav-title">Questions</div>
+          <div class="exam-nav-grid" id="exam-nav-grid">
+            <!-- filled by cbt.js -->
+          </div>
+          <div class="exam-nav-legend">
+            <div class="legend-item"><span class="legend-dot answered"></span> Answered</div>
+            <div class="legend-item"><span class="legend-dot flagged"></span>  Flagged</div>
+            <div class="legend-item"><span class="legend-dot unanswered"></span> Unanswered</div>
+          </div>
+        </div>
+
+        <!-- Question area -->
+        <div class="exam-question-area">
+          <div class="question-card" id="question-card">
+            <!-- filled by cbt.js -->
+          </div>
+          <div class="exam-nav-btns">
+            <button class="btn btn-outline" id="prev-btn" disabled>← Previous</button>
+            <button class="btn btn-ghost"   id="flag-btn">⚑ Flag</button>
+            <button class="btn btn-gold"    id="next-btn">Next →</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ══════ SCREEN 3: RESULTS / SCORE ══════ -->
+    <div class="cbt-screen" id="screen-results" hidden>
+      <div class="section container">
+        <div class="score-wrap" id="score-wrap">
+          <!-- filled by cbt.js -->
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="../../shared/shared.js"    defer></script>
+  <script src="../../shared/utilities.js" defer></script>
+  <script src="./cbt.js"                 defer></script>
+</body>
+</html>

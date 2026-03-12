@@ -1,0 +1,459 @@
+/* ================================================================
+   teachers.css — Teacher Registry page styles only
+   ================================================================ */
+
+/* ── SUMMARY STRIP ─────────────────────────────────────────── */
+.teacher-summary-strip {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: var(--s4) 0;
+}
+
+.summary-strip-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s7);
+  flex-wrap: wrap;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.summary-num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+}
+.summary-label {
+  font-size: .78rem;
+  color: var(--navy-300);
+  font-weight: 500;
+}
+.summary-divider {
+  width: 1px;
+  height: 38px;
+  background: var(--border);
+}
+@media (max-width: 560px) { .summary-divider { display: none; } }
+
+/* ── TEACHERS LAYOUT ───────────────────────────────────────── */
+.teachers-layout {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: var(--s6);
+  align-items: start;
+}
+@media (max-width: 960px) {
+  .teachers-layout { grid-template-columns: 1fr; }
+}
+
+/* ── FILTERS PANEL ─────────────────────────────────────────── */
+.filters-panel {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+  position: sticky;
+  top: calc(var(--header-h) + var(--s4));
+}
+@media (max-width: 960px) {
+  .filters-panel { position: static; }
+}
+
+.filters-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.filters-panel-header h3 {
+  font-family: var(--font-display);
+  font-size: .98rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+.filter-group-label {
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--navy-500);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.filter-divider {
+  height: 1px;
+  background: var(--border);
+}
+
+.filter-stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+.filter-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .82rem;
+}
+.filter-stat-label { color: var(--navy-500); }
+.filter-stat-val   { font-weight: 600; color: var(--navy); }
+
+/* ── TOOLBAR ───────────────────────────────────────────────── */
+.teachers-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  margin-bottom: var(--s5);
+  flex-wrap: wrap;
+}
+
+.toolbar-search { flex: 1; min-width: 200px; }
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  flex-wrap: wrap;
+}
+
+.results-count {
+  font-size: .84rem;
+  color: var(--navy-300);
+  white-space: nowrap;
+}
+
+.view-toggle {
+  display: flex;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.view-btn {
+  padding: .4rem .7rem;
+  font-size: .95rem;
+  color: var(--navy-300);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all var(--fast);
+}
+.view-btn.active {
+  background: var(--white);
+  color: var(--navy);
+  box-shadow: var(--shadow-xs);
+}
+.view-btn:hover:not(.active) { color: var(--navy); }
+
+/* ── TEACHERS GRID ─────────────────────────────────────────── */
+.teachers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s4);
+}
+@media (max-width: 1200px) { .teachers-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 640px)  { .teachers-grid { grid-template-columns: 1fr; } }
+
+/* ── TEACHER CARD ──────────────────────────────────────────── */
+.teacher-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+  transition: all var(--mid);
+  cursor: pointer;
+}
+.teacher-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  border-color: rgba(201,146,42,.3);
+}
+
+.teacher-card-top {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+}
+
+.teacher-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.teacher-name {
+  font-family: var(--font-display);
+  font-size: .97rem;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.3;
+}
+.teacher-subject {
+  font-size: .8rem;
+  color: var(--navy-300);
+  margin-top: 2px;
+}
+
+.teacher-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+.teacher-meta-row {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  font-size: .82rem;
+  color: var(--navy-500);
+}
+
+.teacher-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--s3);
+  border-top: 1px solid var(--surface);
+  margin-top: auto;
+}
+
+/* ── TEACHERS TABLE ────────────────────────────────────────── */
+.teachers-table-wrap {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow-x: auto;
+}
+
+.teachers-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .875rem;
+}
+
+.teachers-table th {
+  padding: var(--s3) var(--s4);
+  text-align: left;
+  font-size: .74rem;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--navy-300);
+  background: var(--page-bg);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.teachers-table td {
+  padding: var(--s3) var(--s4);
+  color: var(--navy);
+  border-bottom: 1px solid var(--surface);
+  vertical-align: middle;
+}
+
+.teachers-table tr:last-child td { border-bottom: none; }
+
+.teachers-table tr:hover td { background: var(--page-bg); }
+
+.table-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-right: var(--s2);
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+.td-name { display: flex; align-items: center; white-space: nowrap; }
+.td-school { color: var(--navy-500); font-size: .84rem; max-width: 160px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ── SKELETON ──────────────────────────────────────────────── */
+.teacher-skeleton {
+  height: 200px;
+  border-radius: var(--r-lg);
+}
+
+/* ── EMPTY STATE ───────────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: var(--s10) var(--s5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s3);
+}
+.empty-state h3 { font-family: var(--font-display); font-size: 1.3rem; color: var(--navy); }
+.empty-state p  { color: var(--navy-300); }
+
+/* ── MODAL ─────────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(12,27,46,.55);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s4);
+}
+.modal-overlay[hidden] { display: none; }
+
+.modal {
+  background: var(--white);
+  border-radius: var(--r-xl);
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-xl);
+  animation: modalIn .28s ease both;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(24px) scale(.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s5) var(--s6);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  z-index: 1;
+}
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+.modal-close {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .9rem;
+  color: var(--navy-300);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all var(--fast);
+  border: none;
+}
+.modal-close:hover { background: var(--red-pale); color: var(--red); }
+
+.modal-body { padding: var(--s5) var(--s6); }
+
+/* Profile view inside modal */
+.teacher-profile-header {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  margin-bottom: var(--s5);
+}
+.teacher-profile-avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--white);
+  flex-shrink: 0;
+}
+.teacher-profile-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+.teacher-profile-subject { color: var(--navy-300); font-size: .9rem; margin-top: 3px; }
+
+.profile-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s3) var(--s5);
+}
+@media (max-width: 480px) { .profile-fields { grid-template-columns: 1fr; } }
+
+.profile-field-label {
+  font-size: .75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--navy-300);
+  margin-bottom: 2px;
+}
+.profile-field-value {
+  font-size: .9rem;
+  color: var(--navy);
+  font-weight: 500;
+}
+
+.modal-actions {
+  display: flex;
+  gap: var(--s3);
+  margin-top: var(--s5);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+/* Add teacher form inside modal */
+.add-teacher-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+}
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s4);
+}
+@media (max-width: 480px) { .form-row-2 { grid-template-columns: 1fr; } }
+.field-error {
+  font-size: .8rem;
+  color: var(--red);
+  margin-top: 2px;
+  display: block;
+}
+.input-error {
+  border-color: var(--red) !important;
+  box-shadow: 0 0 0 3px rgba(192,57,43,.12) !important;
+}

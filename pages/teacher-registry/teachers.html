@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="requires-auth" content="true" />
+  <meta name="description" content="Teacher Registry — manage all government teachers across Delta State." />
+  <title>Teacher Registry | Delta State Ministry of Education</title>
+
+  <link rel="stylesheet" href="../../shared/shared.css" />
+  <link rel="stylesheet" href="./teachers.css" />
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main id="page-content">
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+      <div class="page-hero-grid" aria-hidden="true"></div>
+      <div class="page-hero-content">
+        <span class="t-eyebrow">Staff Management</span>
+        <h1>Teacher Registry</h1>
+        <p>View, manage and track all government teachers across Delta State's 25 local government areas.</p>
+      </div>
+    </div>
+
+    <!-- SUMMARY STRIP -->
+    <div class="teacher-summary-strip">
+      <div class="container">
+        <div class="summary-strip-inner stagger" id="summary-strip">
+          <!-- filled by teachers.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="section container">
+      <div class="teachers-layout">
+
+        <!-- ── LEFT: FILTERS PANEL ── -->
+        <aside class="filters-panel" aria-label="Filter teachers">
+
+          <div class="filters-panel-header">
+            <h3>Filters</h3>
+            <button class="btn btn-ghost btn-sm" id="clear-all-filters">Clear All</button>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-group-label" for="filter-lga">LGA</label>
+            <select id="filter-lga" class="form-control form-select">
+              <option value="all">All LGAs</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-group-label" for="filter-subject">Subject</label>
+            <select id="filter-subject" class="form-control form-select">
+              <option value="all">All Subjects</option>
+              <option value="Mathematics">Mathematics</option>
+              <option value="English Language">English Language</option>
+              <option value="Basic Science">Basic Science</option>
+              <option value="Social Studies">Social Studies</option>
+              <option value="Physics">Physics</option>
+              <option value="Chemistry">Chemistry</option>
+              <option value="Biology">Biology</option>
+              <option value="Economics">Economics</option>
+              <option value="Government">Government</option>
+              <option value="Literature">Literature</option>
+              <option value="History">History</option>
+              <option value="ICT">ICT</option>
+              <option value="Agricultural Science">Agricultural Science</option>
+              <option value="Physical Education">Physical Education</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-group-label" for="filter-level">School Level</label>
+            <select id="filter-level" class="form-control form-select">
+              <option value="all">All Levels</option>
+              <option value="primary">Primary</option>
+              <option value="secondary">Secondary</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-group-label" for="filter-status">Status</label>
+            <select id="filter-status" class="form-control form-select">
+              <option value="all">All Statuses</option>
+              <option value="active">Active</option>
+              <option value="on-leave">On Leave</option>
+              <option value="transferred">Transferred</option>
+              <option value="retired">Retired</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-group-label" for="filter-gender">Gender</label>
+            <select id="filter-gender" class="form-control form-select">
+              <option value="all">All</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+
+          <div class="filter-divider"></div>
+
+          <!-- Stats -->
+          <div class="filter-stats" id="filter-stats">
+            <!-- filled by teachers.js -->
+          </div>
+
+        </aside>
+
+        <!-- ── RIGHT: TEACHERS LIST ── -->
+        <div class="teachers-main">
+
+          <!-- Toolbar -->
+          <div class="teachers-toolbar">
+            <div class="search-wrap toolbar-search">
+              <span class="search-icon-el" id="search-icon-slot" aria-hidden="true"></span>
+              <input
+                type="search"
+                id="teacher-search"
+                class="form-control"
+                placeholder="Search by name, school or subject…"
+                aria-label="Search teachers"
+                autocomplete="off"
+              />
+            </div>
+            <div class="toolbar-right">
+              <span class="results-count" id="results-count" aria-live="polite"></span>
+              <div class="view-toggle" role="group" aria-label="View mode">
+                <button class="view-btn active" id="view-grid" aria-label="Grid view" aria-pressed="true">⊞</button>
+                <button class="view-btn"         id="view-list" aria-label="List view"  aria-pressed="false">☰</button>
+              </div>
+              <button class="btn btn-gold btn-sm" id="add-teacher-btn">+ Add Teacher</button>
+            </div>
+          </div>
+
+          <!-- Skeleton -->
+          <div class="teachers-grid" id="skeleton-grid" aria-hidden="true">
+            <div class="teacher-skeleton skeleton"></div>
+            <div class="teacher-skeleton skeleton"></div>
+            <div class="teacher-skeleton skeleton"></div>
+            <div class="teacher-skeleton skeleton"></div>
+            <div class="teacher-skeleton skeleton"></div>
+            <div class="teacher-skeleton skeleton"></div>
+          </div>
+
+          <!-- Grid view -->
+          <div class="teachers-grid"  id="teachers-grid"  hidden></div>
+
+          <!-- List view -->
+          <div class="teachers-table-wrap" id="teachers-table" hidden>
+            <table class="teachers-table" aria-label="Teachers list">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Subject</th>
+                  <th>School</th>
+                  <th>LGA</th>
+                  <th>Level</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="teachers-tbody"></tbody>
+            </table>
+          </div>
+
+          <!-- Empty state -->
+          <div class="empty-state" id="empty-state" hidden aria-live="polite">
+            <div style="font-size:3rem">🔍</div>
+            <h3>No teachers found</h3>
+            <p>Try adjusting your search or clearing the filters.</p>
+            <button class="btn btn-outline" id="empty-clear">Clear Filters</button>
+          </div>
+
+        </div>
+        <!-- end teachers-main -->
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── ADD / VIEW TEACHER MODAL ── -->
+  <div class="modal-overlay" id="modal-overlay" hidden aria-modal="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modal" id="teacher-modal">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title">Teacher Profile</h2>
+        <button class="modal-close" id="modal-close" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <!-- filled dynamically by teachers.js -->
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-mount"></div>
+
+  <script src="../../shared/shared.js"    defer></script>
+  <script src="../../shared/utilities.js" defer></script>
+  <script src="./teachers.js"             defer></script>
+</body>
+</html>

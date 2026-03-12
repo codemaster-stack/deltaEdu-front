@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="requires-auth" content="true" />
+  <meta name="description" content="Ministry Admin Dashboard — Delta State Ministry of Education." />
+  <title>Dashboard | Delta State Ministry of Education</title>
+
+  <link rel="stylesheet" href="../../shared/shared.css" />
+  <link rel="stylesheet" href="./dashboard.css" />
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main id="page-content">
+
+    <!-- DASHBOARD SHELL -->
+    <div class="dash-layout">
+
+      <!-- ── SIDEBAR ── -->
+      <aside class="dash-sidebar" id="dash-sidebar" aria-label="Dashboard navigation">
+
+        <!-- User card -->
+        <div class="dash-user-card" id="dash-user-card">
+          <div class="dash-user-avatar" id="dash-user-avatar">A</div>
+          <div class="dash-user-info">
+            <span class="dash-user-name"  id="dash-user-name">Loading…</span>
+            <span class="dash-user-role"  id="dash-user-role"></span>
+          </div>
+        </div>
+
+        <!-- Nav items -->
+        <nav class="dash-nav" aria-label="Dashboard sections">
+          <div class="dash-nav-group">
+            <span class="dash-nav-label">Overview</span>
+            <a href="#overview"        class="dash-nav-link active" data-section="overview">
+              <span class="dni">📊</span> Dashboard
+            </a>
+            <a href="#schools"         class="dash-nav-link" data-section="schools">
+              <span class="dni">🏫</span> Schools
+            </a>
+            <a href="#teachers"        class="dash-nav-link" data-section="teachers">
+              <span class="dni">👩‍🏫</span> Teachers
+            </a>
+            <a href="#students"        class="dash-nav-link" data-section="students">
+              <span class="dni">🎓</span> Students
+            </a>
+          </div>
+          <div class="dash-nav-group">
+            <span class="dash-nav-label">Management</span>
+            <a href="#admissions"      class="dash-nav-link" data-section="admissions">
+              <span class="dni">📋</span> Admissions
+            </a>
+            <a href="#results"         class="dash-nav-link" data-section="results">
+              <span class="dni">📝</span> Results
+            </a>
+            <a href="#cbt"             class="dash-nav-link" data-section="cbt">
+              <span class="dni">💻</span> CBT Exams
+            </a>
+            <a href="#lms"             class="dash-nav-link" data-section="lms">
+              <span class="dni">📚</span> LMS
+            </a>
+          </div>
+          <div class="dash-nav-group">
+            <span class="dash-nav-label">System</span>
+            <a href="#analytics"       class="dash-nav-link" data-section="analytics">
+              <span class="dni">📈</span> Analytics
+            </a>
+            <a href="#"                class="dash-nav-link" id="logout-link">
+              <span class="dni">🚪</span> Logout
+            </a>
+          </div>
+        </nav>
+
+      </aside>
+
+      <!-- Sidebar overlay (mobile) -->
+      <div class="dash-overlay" id="dash-overlay" aria-hidden="true"></div>
+
+      <!-- ── MAIN AREA ── -->
+      <div class="dash-main">
+
+        <!-- Top bar -->
+        <div class="dash-topbar">
+          <button class="dash-menu-btn" id="dash-menu-btn" aria-label="Open sidebar">
+            <span></span><span></span><span></span>
+          </button>
+          <div class="dash-topbar-title" id="dash-topbar-title">Dashboard</div>
+          <div class="dash-topbar-right">
+            <span class="dash-date" id="dash-date"></span>
+            <div class="dash-notif-btn" aria-label="Notifications">
+              🔔
+              <span class="notif-dot" id="notif-dot"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SECTION: OVERVIEW ── -->
+        <section class="dash-section active" id="section-overview" aria-label="Overview">
+
+          <div class="dash-section-header">
+            <div>
+              <h1 class="dash-section-title">Good <span id="greeting-time"></span>, <span id="greeting-name"></span> 👋</h1>
+              <p class="dash-section-sub">Here is a summary of education activity across Delta State.</p>
+            </div>
+            <div class="dash-section-actions">
+              <button class="btn btn-outline btn-sm" id="refresh-btn">↻ Refresh</button>
+              <a href="/pages/schools/schools.html" class="btn btn-gold btn-sm">View Schools →</a>
+            </div>
+          </div>
+
+          <!-- KPI CARDS -->
+          <div class="kpi-grid stagger" id="kpi-grid">
+            <!-- filled by dashboard.js -->
+          </div>
+
+          <!-- CHARTS ROW -->
+          <div class="charts-row">
+
+            <div class="chart-card">
+              <div class="chart-card-header">
+                <h3>Schools by Type</h3>
+                <span class="badge badge-grey">All LGAs</span>
+              </div>
+              <div class="donut-wrap" id="donut-wrap">
+                <!-- filled by dashboard.js -->
+              </div>
+            </div>
+
+            <div class="chart-card chart-card-wide">
+              <div class="chart-card-header">
+                <h3>Enrolment by LGA (Top 8)</h3>
+                <span class="badge badge-grey">Students</span>
+              </div>
+              <div class="bar-chart-wrap" id="bar-chart-wrap">
+                <!-- filled by dashboard.js -->
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RECENT ACTIVITY + QUICK ACTIONS -->
+          <div class="bottom-row">
+
+            <div class="activity-card">
+              <div class="activity-card-header">
+                <h3>Recent Activity</h3>
+                <button class="btn btn-ghost btn-sm">View All</button>
+              </div>
+              <div class="activity-list" id="activity-list">
+                <!-- filled by dashboard.js -->
+              </div>
+            </div>
+
+            <div class="quick-actions-card">
+              <h3 class="quick-actions-title">Quick Actions</h3>
+              <div class="quick-actions-grid" id="quick-actions-grid">
+                <!-- filled by dashboard.js -->
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- ── PLACEHOLDER SECTIONS (built in later stages) ── -->
+        <section class="dash-section" id="section-schools"    aria-label="Schools">
+          <div class="coming-soon-panel">
+            <span>🏫</span>
+            <h2>School Management</h2>
+            <p>Full school management module — add, edit, deactivate schools and manage principals. Coming in Stage 3.</p>
+            <a href="/pages/schools/schools.html" class="btn btn-gold">View Public Directory →</a>
+          </div>
+        </section>
+
+        <section class="dash-section" id="section-teachers"   aria-label="Teachers">
+          <div class="coming-soon-panel">
+            <span>👩‍🏫</span>
+            <h2>Teacher Registry</h2>
+            <p>Teacher records, postings, transfers and professional development tracking. Coming in Stage 3.</p>
+            <a href="/pages/teacher-registry/teachers.html" class="btn btn-gold">Go to Teacher Registry →</a>
+          </div>
+        </section>
+
+        <section class="dash-section" id="section-students"   aria-label="Students">
+          <div class="coming-soon-panel">
+            <span>🎓</span>
+            <h2>Student Management</h2>
+            <p>Student records, enrolment, attendance and academic history. Coming in Stage 4.</p>
+          </div>
+        </section>
+
+        <section class="dash-section" id="section-admissions" aria-label="Admissions">
+          <div class="coming-soon-panel">
+            <span>📋</span>
+            <h2>Admissions</h2>
+            <p>Manage school admissions and placement across Delta State. Coming in Stage 4.</p>
+            <a href="/pages/admissions/admissions.html" class="btn btn-gold">Go to Admissions →</a>
+          </div>
+        </section>
+
+        <section class="dash-section" id="section-results"    aria-label="Results">
+          <div class="coming-soon-panel">
+            <span>📝</span>
+            <h2>Results Management</h2>
+            <p>Upload, manage and publish examination results. Coming in Stage 4.</p>
+            <a href="/pages/results/results.html" class="btn btn-gold">Go to Results →</a>
+          </div>
+        </section>
+
+        <section class="dash-section" id="section-cbt"        aria-label="CBT">
+          <div class="coming-soon-panel">
+            <span>💻</span>
+            <h2>CBT Examination Engine</h2>
+            <p>Create, schedule and manage computer-based tests. Coming in Stage 5.</p>
+            <a href="/pages/cbt/cbt.html" class="btn btn-gold">Go to CBT →</a>
+          </div>
+        </section>
+
+        <section class="dash-section" id="section-lms"        aria-label="LMS">
+          <div class="coming-soon-panel">
+            <span>📚</span>
+            <h2>Learning Management System</h2>
+            <p>Upload learning materials, assignments and track student progress. Coming in Stage 5.</p>
+            <a href="/pages/lms/lms.html" class="btn btn-gold">Go to LMS →</a>
+          </div>
+        </section>
+
+        <section class="dash-section" id="section-analytics"  aria-label="Analytics">
+          <div class="coming-soon-panel">
+            <span>📈</span>
+            <h2>Analytics & Reports</h2>
+            <p>Statewide education performance analytics and downloadable reports. Coming in Stage 6.</p>
+          </div>
+        </section>
+
+      </div>
+      <!-- end dash-main -->
+
+    </div>
+    <!-- end dash-layout -->
+
+  </main>
+
+  <div id="footer-mount"></div>
+
+  <script src="../../shared/shared.js"    defer></script>
+  <script src="../../shared/utilities.js" defer></script>
+  <script src="./dashboard.js"            defer></script>
+</body>
+</html>

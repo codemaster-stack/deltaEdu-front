@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="requires-auth" content="true" />
+  <meta name="description" content="Student Management — view and manage all enrolled students across Delta State." />
+  <title>Student Management | Delta State Ministry of Education</title>
+
+  <link rel="stylesheet" href="../../shared/shared.css" />
+  <link rel="stylesheet" href="./students.css" />
+</head>
+<body>
+
+  <div id="navbar-mount"></div>
+
+  <main id="page-content">
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+      <div class="page-hero-grid" aria-hidden="true"></div>
+      <div class="page-hero-content">
+        <span class="t-eyebrow">Student Management</span>
+        <h1>Student Records</h1>
+        <p>View, search and manage student enrolment records across all schools in Delta State.</p>
+      </div>
+    </div>
+
+    <!-- SUMMARY STRIP -->
+    <div class="student-summary-strip">
+      <div class="container">
+        <div class="summary-strip-inner stagger" id="summary-strip">
+          <!-- filled by students.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="section container">
+      <div class="students-layout">
+
+        <!-- ── LEFT: FILTERS ── -->
+        <aside class="filters-panel" aria-label="Filter students">
+
+          <div class="filters-panel-header">
+            <h3>Filters</h3>
+            <button class="btn btn-ghost btn-sm" id="clear-all-filters">Clear All</button>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-group-label" for="filter-lga">LGA</label>
+            <select id="filter-lga" class="form-control form-select">
+              <option value="all">All LGAs</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-group-label" for="filter-level">School Level</label>
+            <select id="filter-level" class="form-control form-select">
+              <option value="all">All Levels</option>
+              <option value="primary">Primary</option>
+              <option value="secondary">Secondary</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-group-label" for="filter-class">Class</label>
+            <select id="filter-class" class="form-control form-select">
+              <option value="all">All Classes</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-group-label" for="filter-gender">Gender</label>
+            <select id="filter-gender" class="form-control form-select">
+              <option value="all">All</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-group-label" for="filter-status">Status</label>
+            <select id="filter-status" class="form-control form-select">
+              <option value="all">All</option>
+              <option value="active">Active</option>
+              <option value="graduated">Graduated</option>
+              <option value="transferred">Transferred</option>
+              <option value="withdrawn">Withdrawn</option>
+            </select>
+          </div>
+
+          <div class="filter-divider"></div>
+
+          <div class="filter-stats" id="filter-stats">
+            <!-- filled by students.js -->
+          </div>
+
+        </aside>
+
+        <!-- ── RIGHT: STUDENTS ── -->
+        <div class="students-main">
+
+          <!-- Toolbar -->
+          <div class="students-toolbar">
+            <div class="search-wrap toolbar-search">
+              <span class="search-icon-el" id="search-icon-slot" aria-hidden="true"></span>
+              <input
+                type="search"
+                id="student-search"
+                class="form-control"
+                placeholder="Search by name, ID or school…"
+                aria-label="Search students"
+                autocomplete="off"
+              />
+            </div>
+            <div class="toolbar-right">
+              <span class="results-count" id="results-count" aria-live="polite"></span>
+              <div class="view-toggle" role="group" aria-label="View mode">
+                <button class="view-btn active" id="view-grid" aria-label="Grid view"  aria-pressed="true">⊞</button>
+                <button class="view-btn"         id="view-list" aria-label="Table view" aria-pressed="false">☰</button>
+              </div>
+              <button class="btn btn-gold btn-sm" id="add-student-btn">+ Enrol Student</button>
+            </div>
+          </div>
+
+          <!-- Skeleton -->
+          <div class="students-grid" id="skeleton-grid" aria-hidden="true">
+            <div class="student-skeleton skeleton"></div>
+            <div class="student-skeleton skeleton"></div>
+            <div class="student-skeleton skeleton"></div>
+            <div class="student-skeleton skeleton"></div>
+            <div class="student-skeleton skeleton"></div>
+            <div class="student-skeleton skeleton"></div>
+          </div>
+
+          <!-- Grid view -->
+          <div class="students-grid" id="students-grid" hidden></div>
+
+          <!-- Table view -->
+          <div class="students-table-wrap" id="students-table" hidden>
+            <table class="students-table" aria-label="Students list">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Student ID</th>
+                  <th>Class</th>
+                  <th>School</th>
+                  <th>LGA</th>
+                  <th>Gender</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="students-tbody"></tbody>
+            </table>
+          </div>
+
+          <!-- Empty state -->
+          <div class="empty-state" id="empty-state" hidden aria-live="polite">
+            <div style="font-size:3rem">🔍</div>
+            <h3>No students found</h3>
+            <p>Try adjusting your search or clearing the filters.</p>
+            <button class="btn btn-outline" id="empty-clear">Clear Filters</button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- STUDENT MODAL -->
+  <div class="modal-overlay" id="modal-overlay" hidden aria-modal="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modal" id="student-modal">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title">Student Profile</h2>
+        <button class="modal-close" id="modal-close" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <div id="footer-mount"></div>
+
+  <script src="../../shared/shared.js"    defer></script>
+  <script src="../../shared/utilities.js" defer></script>
+  <script src="./students.js"             defer></script>
+</body>
+</html>
