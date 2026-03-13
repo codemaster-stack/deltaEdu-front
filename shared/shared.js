@@ -1,32 +1,3 @@
-/* ================================================================
-   DELTA STATE MINISTRY OF EDUCATION
-   shared.js — Navbar + Footer injection, Auth Guard, API helper
-   ================================================================
-
-   HOW IT WORKS
-   ─────────────
-   1. Every page HTML has two empty divs:
-        <div id="navbar-mount"></div>   ← top of body
-        <div id="footer-mount"></div>   ← bottom of body
-
-   2. This file runs on every page (loaded with defer).
-      It builds the navbar HTML and footer HTML as strings,
-      then inserts them into those two divs.
-
-   3. It reads window.location.pathname to know which page
-      is active and adds the "active" class to that nav link.
-
-   4. Protected pages add this meta tag in their <head>:
-        <meta name="requires-auth" content="true">
-      shared.js will redirect unauthenticated visitors to login.
-
-   HOW TO ADD A NEW PAGE TO THE NAV
-   ──────────────────────────────────
-   Add one object to the NAV_ITEMS array below.
-   The navbar and footer update automatically on every page.
-
-================================================================ */
-
 'use strict';
 
 /* ----------------------------------------------------------------

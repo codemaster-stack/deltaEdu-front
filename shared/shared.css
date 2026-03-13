@@ -641,8 +641,8 @@ textarea.form-control { resize: vertical; min-height: 130px; }
 .navbar-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* Mobile drawer */
-.navbar-drawer {
-  position: fixed;
+/*.navbar-drawer {
+   position: fixed;
   top: var(--header-h);
   left: 0; right: 0;
   background: rgba(244,241,235,0.99);
@@ -653,10 +653,10 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   flex-direction: column;
   gap: var(--s1);
   z-index: 8999;
-  transform: translateY(-110%);
+  transform: translateY(-110%); 
   transition: transform var(--mid);
   box-shadow: var(--shadow-lg);
-}
+} */
 .navbar-drawer.open { transform: translateY(0); }
 .navbar-drawer .navbar-link { padding: 0.7rem 0.85rem; font-size: 0.95rem; }
 .navbar-drawer .navbar-login {
