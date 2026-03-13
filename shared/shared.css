@@ -1,3 +1,9 @@
+/* ================================================================
+   DELTA STATE MINISTRY OF EDUCATION
+   shared.css — Design System + Header + Footer + All Shared Styles
+   Loaded by every page in the project
+   ================================================================ */
+
 /* ----------------------------------------------------------------
    FONTS
 ---------------------------------------------------------------- */
@@ -571,7 +577,17 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   display: flex;
   align-items: center;
   gap: var(--s1);
+  flex: 1;
+  justify-content: center;
   flex-wrap: nowrap;
+  flex-shrink: 0;
+}
+
+/* Right side — login button + hamburger */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
   flex-shrink: 0;
 }
 .navbar-link {
@@ -640,11 +656,12 @@ textarea.form-control { resize: vertical; min-height: 130px; }
 .navbar-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .navbar-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* Mobile drawer */
-/*.navbar-drawer {
-   position: fixed;
+/* Mobile drawer — sits outside <nav>, below navbar-mount */
+.navbar-drawer {
+  position: fixed;
   top: var(--header-h);
-  left: 0; right: 0;
+  left: 0;
+  right: 0;
   background: rgba(244,241,235,0.99);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
@@ -653,12 +670,16 @@ textarea.form-control { resize: vertical; min-height: 130px; }
   flex-direction: column;
   gap: var(--s1);
   z-index: 8999;
-  transform: translateY(-110%); 
+  transform: translateY(-110%);
   transition: transform var(--mid);
   box-shadow: var(--shadow-lg);
-} */
-.navbar-drawer.open { transform: translateY(0); }
-.navbar-drawer .navbar-link { padding: 0.7rem 0.85rem; font-size: 0.95rem; }
+  visibility: hidden;
+}
+.navbar-drawer.open {
+  transform: translateY(0);
+  visibility: visible;
+}
+.navbar-drawer .navbar-link  { padding: 0.7rem 0.85rem; font-size: 0.95rem; }
 .navbar-drawer .navbar-login {
   margin-left: 0;
   margin-top: var(--s2);
@@ -668,8 +689,12 @@ textarea.form-control { resize: vertical; min-height: 130px; }
 }
 
 @media (max-width: 960px) {
-  .navbar-links { display: none; }
+  .navbar-links  { display: none; }
   .navbar-toggle { display: flex; }
+}
+
+@media (min-width: 961px) {
+  .navbar-toggle { display: none; }
 }
 
 /* ----------------------------------------------------------------
