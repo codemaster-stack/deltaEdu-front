@@ -225,9 +225,6 @@ function initLoginForm() {
    BOOT
 ---------------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
-  // Auto-select role tab from URL parameter
-  const roleParam = new URLSearchParams(window.location.search).get('role');
-  if (roleParam) switchRole(roleParam);
 
   injectEmailIcon();
   initRoleTabs();
@@ -235,4 +232,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initForgotPassword();
   checkSessionExpired();
   initLoginForm();
+
+   // Auto-select role tab from URL parameter
+  const roleParam = new URLSearchParams(window.location.search).get('role');
+  if (roleParam) switchRole(roleParam);
 });
