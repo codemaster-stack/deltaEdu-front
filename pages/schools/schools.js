@@ -153,7 +153,8 @@ async function loadSchools() {
   schoolsGrid.hidden  = true;
 
   try {
-    const data = await apiFetch('/public/schools');
+    // const data = await apiFetch('/public/schools');
+    const data = null;
     allSchools = data?.schools || SCHOOLS;
   } catch {
     // No backend yet — use demo data silently
