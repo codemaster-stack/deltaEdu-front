@@ -225,7 +225,6 @@ function initLoginForm() {
    BOOT
 ---------------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
-
   injectEmailIcon();
   initRoleTabs();
   initPasswordToggle();
@@ -233,7 +232,15 @@ document.addEventListener('DOMContentLoaded', () => {
   checkSessionExpired();
   initLoginForm();
 
-   // Auto-select role tab from URL parameter
+  // Auto-select role tab from URL parameter
   const roleParam = new URLSearchParams(window.location.search).get('role');
-  if (roleParam) switchRole(roleParam);
+  if (roleParam) {
+    currentRole = roleParam;
+    document.querySelectorAll('.role-tab').forEach(t => {
+      const isMatch = t.dataset.role === roleParam;
+      t.classList.toggle('active', isMatch);
+      t.setAttribute('aria-pressed', String(isMatch));
+    });
+    updateFormForRole(roleParam);
+  }
 });
