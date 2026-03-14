@@ -102,8 +102,10 @@ function renderGrid(schools) {
   if (schools.length === 0) {
     grid.hidden       = true;
     emptyState.hidden = false;
+    emptyState.classList.add('visible');
   } else {
     emptyState.hidden = true;
+    emptyState.classList.remove('visible');
     grid.hidden       = false;
     grid.innerHTML    = schools.map(schoolCardHTML).join('');
     grid.classList.add('stagger');
