@@ -174,14 +174,27 @@ function initLoginForm() {
         The backend returns:
         { token: '...', user: { id, name, role, schoolId, ... } }
       */
-      const data = await apiFetch('/auth/login', {
-        method: 'POST',
-        body: {
-          identifier: emailVal,
-          password:   passwordVal,
-          role:       currentRole,
-        },
-      });
+
+        // DEMO MODE — remove this block when backend is live
+const data = {
+  token: 'demo-token-123',
+  user: {
+    id: 1,
+    name: emailVal,
+    role: currentRole,
+    schoolId: null,
+  }
+};
+// END DEMO MODE
+      // const data = await apiFetch('/auth/login', {
+      //   method: 'POST',
+      //   body: {
+      //     identifier: emailVal,
+      //     password:   passwordVal,
+      //     role:       currentRole,
+      //   },
+      // });
+
 
       if (!data) return; // apiFetch handles 401 redirect
 
