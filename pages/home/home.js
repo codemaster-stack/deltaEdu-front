@@ -11,11 +11,11 @@
 ---------------------------------------------------------------- */
 const SERVICES = [
   { icon: '🏫', colour: 'gold',  title: 'School Directory',   desc: 'Browse all registered primary and secondary schools across every LGA in Delta State.',            cta: 'Find Schools',  href: '/pages/schools/schools.html'  },
-  { icon: '👩‍🏫', colour: 'green', title: 'Teacher Portal',     desc: 'Access class records, upload learning materials, record attendance and manage CBT exams.',          cta: 'Teacher Login', href: '/pages/login/login.html'      },
-  { icon: '🎓', colour: 'blue',  title: 'Student Portal',     desc: 'View results, access learning resources, take CBT exams and track your academic progress.',          cta: 'Student Login', href: '/pages/login/login.html'      },
-  { icon: '🏛️', colour: 'gold',  title: 'Ministry Admin',     desc: 'Statewide school management, teacher posting, analytics and policy administration.',                 cta: 'Admin Login',   href: '/pages/login/login.html'      },
+  { icon: '👩‍🏫', colour: 'green', title: 'Teacher Portal',  desc: 'Access class records, upload learning materials, record attendance and manage CBT exams.',          cta: 'Teacher Login', href: '/pages/login/login.html?role=staff'   },
+  { icon: '🎓', colour: 'blue',  title: 'Student Portal',  desc: 'View results, access learning resources, take CBT exams and track your academic progress.',          cta: 'Student Login', href: '/pages/login/login.html?role=student' },
+  { icon: '🏛️', colour: 'gold',  title: 'Ministry Admin',  desc: 'Statewide school management, teacher posting, analytics and policy administration.',                 cta: 'Admin Login',   href: '/pages/login/login.html?role=staff'   },
   { icon: '📢', colour: 'green', title: 'News & Circulars',   desc: 'Latest ministry announcements, exam timetables, policy updates and school circulars.',               cta: 'Read News',     href: '/pages/news/news.html'        },
-  { icon: '📋', colour: 'blue',  title: 'Admissions Guide',   desc: 'Information for parents on how to apply for school admissions across Delta State.',                  cta: 'Learn More',    href: '/pages/about/about.html'      },
+  { icon: '📋', colour: 'blue',  title: 'Admissions Guide',   desc: 'Information for parents on how to apply for school admissions across Delta State.',                  cta: 'Learn More',   href: '/pages/admissions/admissions.html'    },
 ];
 
 /* ----------------------------------------------------------------
