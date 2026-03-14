@@ -145,17 +145,23 @@ window.viewSchool = function(id) {
    LOAD DATA
 ---------------------------------------------------------------- */
 async function loadSchools() {
-  document.getElementById('skeleton-grid').hidden = false;
-  document.getElementById('schools-grid').hidden  = true;
+  const skeletonGrid = document.getElementById('skeleton-grid');
+  const schoolsGrid  = document.getElementById('schools-grid');
+
+  // Show skeleton, hide real grid
+  skeletonGrid.hidden = false;
+  schoolsGrid.hidden  = true;
 
   try {
     const data = await apiFetch('/public/schools');
     allSchools = data?.schools || SCHOOLS;
   } catch {
+    // No backend yet — use demo data silently
     allSchools = SCHOOLS;
   }
 
-  document.getElementById('skeleton-grid').hidden = true;
+  // Always hide skeleton and show real data
+  skeletonGrid.hidden = true;
   filtered = [...allSchools];
   renderGrid(filtered);
 }
