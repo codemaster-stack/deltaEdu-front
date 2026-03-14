@@ -82,8 +82,10 @@ function renderArticles(category) {
   if (items.length === 0) {
     list.hidden  = true;
     empty.hidden = false;
+    empty.classList.add('visible');
   } else {
-    empty.hidden     = true;
+    empty.hidden = true;
+    empty.classList.remove('visible');
     list.hidden      = false;
     list.innerHTML   = items.map(articleHTML).join('');
   }
