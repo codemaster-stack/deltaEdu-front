@@ -49,12 +49,12 @@ const ACTIVITY_DATA = [
 ];
 
 const QUICK_ACTIONS = [
-  { icon: '➕', label: 'Add School',       href: '#schools'    },
-  { icon: '👤', label: 'Add Teacher',      href: '#teachers'   },
-  { icon: '📤', label: 'Upload Results',   href: '#results'    },
-  { icon: '📢', label: 'Post Circular',    href: '#'           },
-  { icon: '📊', label: 'View Reports',     href: '#analytics'  },
-  { icon: '⚙️', label: 'Settings',         href: '#'           },
+  { icon: '➕', label: 'Add School',       href: '/pages/schools/schools.html'              },
+  { icon: '👤', label: 'Add Teacher',      href: '/pages/teacher-registry/teachers.html'    },
+  { icon: '📤', label: 'Upload Results',   href: '/pages/results/results.html'              },
+  { icon: '📢', label: 'Post Circular',    href: '/pages/news/news.html'                    },
+  { icon: '📊', label: 'View Reports',     href: '#analytics'                               },
+  { icon: '⚙️', label: 'Settings',         href: '#'                                        },
 ];
 
 /* ----------------------------------------------------------------
