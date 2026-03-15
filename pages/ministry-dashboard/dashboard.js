@@ -49,12 +49,12 @@ const ACTIVITY_DATA = [
 ];
 
 const QUICK_ACTIONS = [
-  { icon: '➕', label: 'Add School',       href: '/pages/schools/schools.html'              },
-  { icon: '👤', label: 'Add Teacher',      href: '/pages/teacher-registry/teachers.html'    },
-  { icon: '📤', label: 'Upload Results',   href: '/pages/results/results.html'              },
-  { icon: '📢', label: 'Post Circular',    href: '/pages/news/news.html'                    },
-  { icon: '📊', label: 'View Reports',     href: '#analytics'                               },
-  { icon: '⚙️', label: 'Settings',         href: '#'                                        },
+  { icon: '➕', label: 'Add School',     action: 'modal',   modal:   'modal-add-school'                    },
+  { icon: '👤', label: 'Add Teacher',    action: 'href',    href:    '/pages/teacher-registry/teachers.html' },
+  { icon: '📤', label: 'Upload Results', action: 'href',    href:    '/pages/results/results.html'           },
+  { icon: '📢', label: 'Post Circular',  action: 'modal',   modal:   'modal-post-circular'                 },
+  { icon: '📊', label: 'View Reports',   action: 'section', section: 'analytics'                           },
+  { icon: '⚙️', label: 'Settings',       action: 'href',    href:    '#'                                   },
 ];
 
 /* ----------------------------------------------------------------
@@ -227,24 +227,96 @@ function renderActivity(data) {
 }
 
 /* ----------------------------------------------------------------
-   RENDER QUICK ACTIONS
+   MODALS — Add School + Post Circular
+---------------------------------------------------------------- */
+function openModal(id) {
+  document.getElementById(id)?.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById(id)?.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function initModals() {
+  // Add School
+  document.getElementById('close-add-school')?.addEventListener('click',  () => closeModal('modal-add-school'));
+  document.getElementById('cancel-add-school')?.addEventListener('click', () => closeModal('modal-add-school'));
+  document.getElementById('modal-add-school')?.addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeModal('modal-add-school');
+  });
+  document.getElementById('submit-add-school')?.addEventListener('click', () => {
+    const name      = document.getElementById('as-name').value.trim();
+    const type      = document.getElementById('as-type').value;
+    const lga       = document.getElementById('as-lga').value;
+    const address   = document.getElementById('as-address').value.trim();
+    const principal = document.getElementById('as-principal').value.trim();
+
+    if (!name || !type || !lga || !address || !principal) {
+      showToast('Please fill in all required fields.', 'error');
+      return;
+    }
+    showToast('School record saved locally. Connect backend to persist.', 'info', 5000);
+    closeModal('modal-add-school');
+    // Clear form
+    ['as-name','as-type','as-lga','as-address','as-principal','as-phone'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+  });
+
+  // Post Circular
+  document.getElementById('close-post-circular')?.addEventListener('click',  () => closeModal('modal-post-circular'));
+  document.getElementById('cancel-post-circular')?.addEventListener('click', () => closeModal('modal-post-circular'));
+  document.getElementById('modal-post-circular')?.addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeModal('modal-post-circular');
+  });
+  document.getElementById('submit-post-circular')?.addEventListener('click', () => {
+    const title    = document.getElementById('pc-title').value.trim();
+    const category = document.getElementById('pc-category').value;
+    const audience = document.getElementById('pc-audience').value;
+    const content  = document.getElementById('pc-content').value.trim();
+
+    if (!title || !category || !audience || !content) {
+      showToast('Please fill in all required fields.', 'error');
+      return;
+    }
+    showToast('Circular posted locally. Connect backend to publish.', 'info', 5000);
+    closeModal('modal-post-circular');
+    // Clear form
+    ['pc-title','pc-category','pc-audience','pc-content'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+  });
+}
+
+/* ----------------------------------------------------------------
+   QUICK ACTIONS
 ---------------------------------------------------------------- */
 function renderQuickActions(actions) {
   const grid = document.getElementById('quick-actions-grid');
   if (!grid) return;
 
   grid.innerHTML = actions.map(a => `
-    <a href="${a.href}" class="qa-btn" aria-label="${a.label}">
+    <button class="qa-btn" aria-label="${a.label}" data-action="${a.action}"
+      ${a.modal   ? `data-modal="${a.modal}"`     : ''}
+      ${a.section ? `data-section="${a.section}"` : ''}
+      ${a.href    ? `data-href="${a.href}"`        : ''}
+    >
       <span class="qa-btn-icon">${a.icon}</span>
       <span class="qa-btn-label">${a.label}</span>
-    </a>
+    </button>
   `).join('');
 
-  // Wire internal section links
-  grid.querySelectorAll('[href^="#"]').forEach(btn => {
-    btn.addEventListener('click', e => {
-      const target = btn.getAttribute('href').slice(1);
-      if (target) { e.preventDefault(); switchSection(target); }
+  grid.querySelectorAll('.qa-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const action = btn.dataset.action;
+      if (action === 'modal')   openModal(btn.dataset.modal);
+      if (action === 'section') switchSection(btn.dataset.section);
+      if (action === 'href' && btn.dataset.href && btn.dataset.href !== '#') {
+        window.location.href = btn.dataset.href;
+      }
     });
   });
 }
@@ -363,5 +435,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initSectionNav();
   initMobileSidebar();
   initLogout();
+  initModals();
   loadLiveData(); // silent upgrade when API is live
 });
